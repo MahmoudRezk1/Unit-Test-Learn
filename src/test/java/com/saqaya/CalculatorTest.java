@@ -2,7 +2,7 @@ package com.saqaya;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -72,11 +72,7 @@ class CalculatorTest {
 
     @DisplayName("Test integer subtraction [minuend, subtrahend, expectedResult]")
     @ParameterizedTest
-    @CsvSource({
-            "33, 1, 32",
-            "54, 1, 53",
-            "24, 1, 23"
-    })
+    @CsvFileSource(resources = "/integerSubtraction.csv")
     void integerSubtraction(int minuend, int subtrahend, int expectedResult) {
         System.out.println("Running Test " + minuend + "-" + subtrahend + " = " + expectedResult);
 
