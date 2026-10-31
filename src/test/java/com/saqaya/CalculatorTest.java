@@ -3,9 +3,9 @@ package com.saqaya;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test Math operations in Calculator class")
 class CalculatorTest {
@@ -68,6 +68,13 @@ class CalculatorTest {
 
         // Assert
         assertEquals(expectedExceptionMessage, actualException.getMessage(), "Unexpected exception message");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Ahmed", "Mahmoud", "Ali"})
+    void valueSourceDemonstration(String firstName){
+        System.out.println(firstName);
+        assertNotNull(firstName);
     }
 
     @DisplayName("Test integer subtraction [minuend, subtrahend, expectedResult]")
