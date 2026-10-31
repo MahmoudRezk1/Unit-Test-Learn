@@ -79,7 +79,9 @@ class CalculatorTest {
 
     @DisplayName("Test integer subtraction [minuend, subtrahend, expectedResult]")
     @ParameterizedTest
-    @CsvFileSource(resources = "/integerSubtraction.csv")
+    @MethodSource()
+        // if the name of the method that contains the streams of parameters
+        // is the same name of this method no need to mention it int the @MethodSource
     void integerSubtraction(int minuend, int subtrahend, int expectedResult) {
         System.out.println("Running Test " + minuend + "-" + subtrahend + " = " + expectedResult);
 
@@ -88,6 +90,14 @@ class CalculatorTest {
         // write the error message in lambda expression to lazy load it (will be calculated only in error case)
         assertEquals(expectedResult, actualResult,
                 () -> minuend + "-" + subtrahend + " did not produce " + expectedResult);
+    }
+
+    public static Stream<Arguments> integerSubtraction() {
+        return Stream.of(
+                Arguments.of(33, 1, 32),
+                Arguments.of(54, 1, 53),
+                Arguments.of(24, 1, 23)
+        );
     }
 
     @DisplayName("Square root of a negative number")
